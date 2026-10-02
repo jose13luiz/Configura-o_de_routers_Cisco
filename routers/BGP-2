@@ -1,0 +1,77 @@
+ena
+conf t
+hostname Router2
+line vty 0 15
+password cisco
+login
+enable password cisco
+enable secrect cisco
+banner motd $
+###############################################
+Bem Vindo, ao Router 2!!!!!!!!#############
+###############################################
+$
+
+
+
+
+interface g0/0
+ip address 88.89.44.1 255.255.254.0
+no shutdown
+
+
+
+interface s0/2/0
+ip address 88.89.22.3 255.255.254.0
+no shutdown
+
+interface s0/3/0
+encapsulation frame-relay
+band 1000
+clock rate 64000
+no shutdown
+
+interface s0/3/0.29 point-to-point
+ip address 88.89.4.2 255.255.254.0
+frame-relay interface-dlci 29
+
+
+
+exit
+
+
+
+router eigrp 65001
+no auto-summary
+passive-interface g0/0
+network 88.89.22.0 255.255.254.0
+network 88.89.44.0 255.255.254.0
+network 88.89.4.0 255.255.254.0
+
+
+
+
+
+
+
+router bgp 200
+neighbor 88.89.30.0 remote-as 200
+neighbor 88.89.20.0 remote-as 100
+network 88.89.22.0 mask 255.255.254.0
+network 88.89.44.0 mask 255.255.254.0
+network 88.89.4.0 mask 255.255.254.0
+
+
+
+
+
+
+
+
+ 
+end
+
+wr
+
+
+

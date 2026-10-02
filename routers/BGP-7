@@ -1,0 +1,78 @@
+ena
+conf t
+hostname Router6
+line vty 0 15
+password cisco
+login
+enable password cisco
+enable secrect cisco
+banner motd $
+###############################################
+Bem Vindo, ao Router 6!!!!!!!!#############
+###############################################
+$
+
+
+
+
+
+interface g0/0
+ip address 88.89.36.1 255.255.254.0
+no shutdown
+
+interface s0/2/0
+ip address 88.89.26.5 255.255.254.0
+no shutdown
+
+
+interface s0/3/0
+encapsulation frame-relay
+band 1000
+clock rate 64000
+no shutdown
+
+interface s0/3/0.29 point-to-point
+ip address 88.89.12.6 255.255.254.0
+frame-relay interface-dlci 29
+
+
+
+
+exit
+
+router eigrp 65001
+no auto-summary
+passive-interface g0/0
+network 88.89.36.0 255.255.254.0
+network 88.89.26.0 255.255.254.0
+network 88.89.12.0 255.255.254.0
+
+
+
+
+
+
+
+
+router bgp 300
+neighbor 88.89.38.0 remote-as 400
+neighbor 88.89.34.0 remote-as 300
+network 88.89.36.0 mask 255.255.254.0
+network 88.89.26.0 mask 255.255.254.0
+network 88.89.12.0 mask 255.255.254.0
+
+
+
+
+
+
+
+
+
+ 
+end
+
+wr
+
+
+

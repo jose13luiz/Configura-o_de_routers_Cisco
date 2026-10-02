@@ -1,0 +1,79 @@
+ena
+conf t
+hostname Router8
+line vty 0 15
+password cisco
+login
+enable password cisco
+enable secrect cisco
+banner motd $
+###############################################
+Bem Vindo, ao Router 8!!!!!!!!#############
+###############################################
+$
+
+
+
+
+
+
+interface g0/0
+ip address 88.89.40.1 255.255.254.0
+no shutdown
+
+
+interface s0/3/0
+encapsulation frame-relay
+band 1000
+no shutdown
+
+interface s0/3/0.29 point-to-point
+ip address 88.89.16.8 255.255.254.0
+frame-relay interface-dlci 29
+
+
+
+
+
+
+exit
+
+
+
+
+router eigrp 65001
+no auto-summary
+passive-interface g0/0
+network 88.89.40.0 255.255.254.0
+network 88.89.16.0 255.255.254.0
+
+
+
+
+
+
+
+
+router bgp 500
+neighbor 88.89.20.0 remote-as 100
+neighbor 88.89.38.0 remote-as 400
+network 88.89.40.0 mask 255.255.254.0
+network 88.89.16.0 mask 255.255.254.0
+
+
+
+
+
+
+
+
+
+
+ 
+end
+
+
+wr
+
+
+
