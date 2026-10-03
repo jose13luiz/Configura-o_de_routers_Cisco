@@ -1,9 +1,9 @@
 # Configuração_de_Routers_Cisco
--
+
 
 ## Caminho de Rotas BGP Frame-Relay(Protocolo EIGRP)
 
--
+
 
 Fiz uma convergência Frame-Relay BGP EIGRP com oito routers(Dinâmico). Onde injetei o frame-relay no router1 para os demais. Todos pingam e abrem o telnet.
 
